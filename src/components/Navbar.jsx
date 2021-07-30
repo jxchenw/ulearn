@@ -4,62 +4,42 @@ import Login from "./Login";
 import "bootstrap/dist/css/bootstrap.css";
 import logo from "../static/img/coursera.svg";
 
-class Navbar extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="row">
-              <div className="col-3">
-                <img src={logo} />
-              </div>
-              <div className="col-3">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-primary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Explore
-                  </button>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-4">
-                <Search />
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <Login login={this.props.login} />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const Navbar = (props) => {
+	let styles = {
+		lineHight: 3.2,
+	};
+
+	return (
+		<div className="navbar navbar-expand-lg navbar-light bg-light">
+			<div className="container-fluid">
+				<a className="navbar-brand" href="#">
+					<img src={logo} alt="" width="120" />
+				</a>
+				<div className="navbar-nav">
+					<a className="nav-link active" aria-current="page" href="#">
+						<button
+							className="btn btn-primary dropdown-toggle"
+							type="button"
+						>
+							Explore
+						</button>
+					</a>
+				</div>
+				<form className="d-flex">
+					<div className="p-2">
+						<Search />
+					</div>
+					<div className="p-2">
+						<Login
+							isLogin={props.isLogin}
+							isModalOpen={props.isModalOpen}
+							triggerModal={props.triggerModal}
+						/>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
+};
 
 export default Navbar;

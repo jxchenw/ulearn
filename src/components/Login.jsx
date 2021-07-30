@@ -1,25 +1,42 @@
 import React, { Component } from "react";
+import Modal from "./Modal";
 
 class Login extends Component {
-  state = {};
-  render() {
-    const isLogin = this.props.login;
-    let button;
-    if (isLogin) {
-      button = (
-        <React.Component>
-          <a href="#">Login</a>
-          <button type="button" className="btn btn-primary">
-            Join for Free
-          </button>
-        </React.Component>
-      );
-    } else {
-      button = <span>James</span>;
-    }
+	style = {
+		textAlign: "right",
+	};
 
-    return <div>{button}</div>;
-  }
+	render() {
+		const isLogin = this.props.isLogin;
+		let button;
+		if (isLogin) {
+			button = <span>James</span>;
+		} else {
+			button = (
+				<div>
+					<a className="m-2" href="#">
+						Login
+					</a>
+					<button
+						type="button"
+						className="btn btn-primary"
+						onClick={this.props.triggerModal}
+					>
+						Join for Free
+					</button>
+				</div>
+			);
+		}
+		return (
+			<div style={this.style}>
+				<Modal
+					isModalOpen={this.props.isModalOpen}
+					triggerModal={this.props.triggerModal}
+				/>
+				{button}
+			</div>
+		);
+	}
 }
 
 export default Login;
